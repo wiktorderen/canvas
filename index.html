@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+    <title>Filtry</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="libraries/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <h1 class="text-center">Filtry Canvas</h1>
+
+        <div class="text-center">
+            <input type="file" id="upload"><br>
+            <canvas id="canvas"></canvas>
+        </div>
+
+<section>
+    <div class="text-center">
+        <label>Blur</label>
+    <input type="range" id="blur" min="0" max="100" value="0" step="1" onchange="nalozFiltr()" data-filter="blur" data-scale="px"><br>
+</div>
+
+<div class="text-center">
+    <label>Jasność</label>
+    <input type="range" min="0" max="200" value="100" step="1" onchange="nalozFiltr()" data-filter="brightness" data-scale="%"><br>
+</div>
+
+<div class="text-center">
+    <label>Kontrast</label>
+    <input type="range" min="0" max="200" value="100" step="1" onchange="nalozFiltr()" data-filter="contrast" data-scale="%"><br>
+</div>
+
+<div class="text-center">
+    <label>Skala szarości</label>
+    <input type="range" min="0" max="100" value="0" step="1" onchange="nalozFiltr()" data-filter="grayscale" data-scale="%"><br>
+</div>
+
+<div class="text-center">
+    <label>Odcień</label>
+    <input type="range" min="0" max="360" value="0" step="1" onchange="nalozFiltr()" data-filter="hue-rotate" data-scale="deg"><br>
+</div>
+
+<div class="text-center">
+    <label>Negatyw</label>
+    <input type="range" min="0" max="100" value="0" step="1" onchange="nalozFiltr()" data-filter="invert" data-scale="%"><br>
+</div>
+
+<div class="text-center">
+    <label>Przezroczystość</label>
+    <input type="range" min="0" max="100" value="100" step="1" onchange="nalozFiltr()" data-filter="opacity" data-scale="%"><br>
+</div>
+
+<div class="text-center">
+    <label>Nasycenie</label>
+    <input type="range" min="0" max="100" value="1" step="1" onchange="nalozFiltr()" data-filter="saturate" data-scale=""><br>
+</div>
+
+<div class="text-center">
+    <label>Sepia</label>
+    <input type="range" min="1" max="100" value="0" step="1" onchange="nalozFiltr()" data-filter="sepia" data-scale="%"><br>
+</div>
+
+<div class="text-center">
+    <a href="#" class="btn btn-danger" id="download_button" download="picture.png">Zapisz obraz</a>
+</div>
+</section>
+    </div>
+
+<script src="libraries/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>
+<script src="canvas.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+    var obraz = document.querySelector('canvas');
+    var filtry = document.querySelectorAll('input[type=range]');
+    function nalozFiltr(){
+        var filtr ='';
+        filtry.forEach(function(item, index){
+            filtr += item.getAttribute('data-filter') + '(' + item.value + item.getAttribute('data-scale') + ') ';
+        });
+        obraz.style.filter = filtr;
+    };
+</script>
+
+
+</body>
+
+
+</html>
